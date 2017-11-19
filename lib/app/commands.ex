@@ -89,6 +89,10 @@ defmodule App.Commands do
       {:error, %HTTPoison.Error{reason: reason}} ->
         send_message "REASON"
     end
+  end
+
+  command ["r", "report"] do
+
 
   end
 

@@ -25,7 +25,8 @@ defmodule App.Mixfile do
     [
       {:nadia, "~> 0.4.1"},
       {:httpoison, "~> 0.13"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:floki, "~> 0.19.0"}
     ]
   end
 
