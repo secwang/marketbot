@@ -97,7 +97,7 @@ defmodule App.Commands do
 
     coin_rank_url = "https://coinmarketcap.com/all/views/all/"
     volumn_rank_url = "https://coinmarketcap.com/currencies/volume/24-hour/#"
-    rank_space = 500
+    rank_space = 300
     coin_space = 200
 
     coin_rank_map = %{}
