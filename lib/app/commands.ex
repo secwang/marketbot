@@ -5,7 +5,7 @@ defmodule App.Commands do
   alias App.Commands.Outside
 
   def catch_null(s)  do
-    if s == null do
+    if s == nil do
       "0"
     else
       s
@@ -39,6 +39,7 @@ defmodule App.Commands do
         IO.puts body
         ss = Poison.decode!(body)
         [head | _] = ss
+        IO.inspect head
 
         name = Map.get(head, "name")
         rank = Map.get(head, "rank")
