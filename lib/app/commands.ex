@@ -5,6 +5,15 @@ defmodule App.Commands do
   alias App.Commands.Outside
 
 
+  catch_null = fn (s) ->
+    if s == "null" do
+      "0"
+    else
+      s
+    end
+
+  end
+
   # You can create commands in the format `/command` by
   # using the macro `command "command"`.
   command "start" do
@@ -25,6 +34,7 @@ defmodule App.Commands do
 
     Logger.log :info, "url = #{url} "
 
+
     case HTTPoison.get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         IO.puts body
@@ -35,26 +45,28 @@ defmodule App.Commands do
         rank = Map.get(head, "rank")
 
         price = Map.get(head, "price_cny")
-                |> Float.parse
-                |> elem(0)
-        price = Map.get(head, "price_cny")
+                |> catch_null
                 |> Float.parse
                 |> elem(0)
                 |> Float.round(2)
 
         change_one = Map.get(head, "percent_change_1h")
+                     |> catch_null
                      |> Float.parse
                      |> elem(0)
                      |> Float.round(2)
         change_two = Map.get(head, "percent_change_24h")
+                     |> catch_null
                      |> Float.parse
                      |> elem(0)
                      |> Float.round(2)
         change_three = Map.get(head, "percent_change_7d")
+                       |> catch_null
                        |> Float.parse
                        |> elem(0)
                        |> Float.round(2)
         volume_24h = Map.get(head, "24h_volume_cny")
+                     |> catch_null
                      |> Float.parse
                      |> elem(0)
                      |> Float.round(2)
