@@ -13,6 +13,7 @@ defmodule AppTest do
 
     coin_rank_url = "https://coinmarketcap.com/all/views/all/"
     volumn_rank_url = "https://coinmarketcap.com/currencies/volume/24-hour/#"
+    coin_space = 300
 
 
 
@@ -43,6 +44,7 @@ defmodule AppTest do
                              |> String.downcase
 
         volume_rank_map = String.split(volumn_rank_string, "|")
+                          |> Enum.take(coin_space)
                           |> Enum.with_index
                           |> Map.new
 
@@ -66,7 +68,7 @@ defmodule AppTest do
         {nil, nil} ->
           diff_int = min
         {x, y} ->
-          diff_int = coin_volume_int - coin_rank_int
+          diff_int = coin_rank_int - coin_volume_int
       end
       Map.put(diff_map, coin, diff_int)
     end
@@ -75,9 +77,15 @@ defmodule AppTest do
     answer = Map.to_list(x)
              |> Enum.sort_by(&(elem(&1, 1)))
              |> Enum.reverse
+             |> Enum.take(20)
 
+    answer_message = Enum.reduce answer, "", fn {coin, diff}, acc ->
+      volume = Map.get(volume_rank_map, coin)
+      rank = Map.get(coin_rank_map, coin)
+      acc <> "Coin = #{coin}\n volume_rank= #{volume}\n rank=#{rank}\n diff = #{diff}\n"
+    end
 
-    IO.inspect(answer)
+    IO.inspect(answer_message)
 
   end
 
