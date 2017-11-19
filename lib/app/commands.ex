@@ -5,7 +5,7 @@ defmodule App.Commands do
   alias App.Commands.Outside
 
   def catch_null(s)  do
-    if s == "null" do
+    if s == null do
       "0"
     else
       s
@@ -32,8 +32,6 @@ defmodule App.Commands do
     url = "https://api.coinmarketcap.com/v1/ticker/#{ticker}/?convert=CNY"
 
     Logger.log :info, "url = #{url} "
-
-
 
 
     case HTTPoison.get(url) do
