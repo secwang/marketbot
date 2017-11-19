@@ -167,7 +167,7 @@ defmodule App.Commands do
       acc <> "COIN: #{coin}\n VOLUME_RANK: #{volume}\nRANK:#{rank}\nDIFF: #{diff}\n"
     end
     answer_message <> "```"
-    send_message result, [{:parse_mode, "Markdown"}]
+    send_message answer_message, [{:parse_mode, "Markdown"}]
 
   end
 
