@@ -4,15 +4,14 @@ defmodule App.Commands do
 
   alias App.Commands.Outside
 
-
-  catch_null = fn (s) ->
+  def catch_null(s)  do
     if s == "null" do
       "0"
     else
       s
     end
-
   end
+
 
   # You can create commands in the format `/command` by
   # using the macro `command "command"`.
@@ -33,6 +32,8 @@ defmodule App.Commands do
     url = "https://api.coinmarketcap.com/v1/ticker/#{ticker}/?convert=CNY"
 
     Logger.log :info, "url = #{url} "
+
+
 
 
     case HTTPoison.get(url) do
