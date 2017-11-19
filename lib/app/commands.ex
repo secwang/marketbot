@@ -92,6 +92,8 @@ defmodule App.Commands do
   end
 
   command ["r", "report"] do
+    Logger.log :info, "\r "
+
 
     coin_rank_url = "https://coinmarketcap.com/all/views/all/"
     volumn_rank_url = "https://coinmarketcap.com/currencies/volume/24-hour/#"
