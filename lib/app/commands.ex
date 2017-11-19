@@ -161,12 +161,11 @@ defmodule App.Commands do
              |> Enum.reverse
              |> Enum.take(20)
 
-    answer_message = Enum.reduce answer, "```\n", fn {coin, diff}, acc ->
+    answer_message = Enum.reduce answer, "", fn {coin, diff}, acc ->
       volume = Map.get(volume_rank_map, coin)
       rank = Map.get(coin_rank_map, coin)
-      acc <> "COIN: #{coin}\nVOLUME_RANK: #{volume}\nRANK:#{rank}\nDIFF: #{diff}"
+      acc <> "COIN: #{coin}\nVOLUME_RANK: #{volume}\nRANK:#{rank}\nDIFF: #{diff} \n\n"
     end
-    answer_message <> "\n```"
     send_message answer_message, [{:parse_mode, "Markdown"}]
   end
 
