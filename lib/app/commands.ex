@@ -97,7 +97,8 @@ defmodule App.Commands do
 
     coin_rank_url = "https://coinmarketcap.com/all/views/all/"
     volumn_rank_url = "https://coinmarketcap.com/currencies/volume/24-hour/#"
-    coin_space = 300
+    rank_space = 500
+    coin_space = 200
 
 
 
@@ -105,6 +106,7 @@ defmodule App.Commands do
     case HTTPoison.get(coin_rank_url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         coin_rank_string = Floki.find(body, ".currency-name-container")
+                           |> Enum.take(rank_space)
                            |> Floki.text([sep: "|"])
                            |> String.downcase
 
